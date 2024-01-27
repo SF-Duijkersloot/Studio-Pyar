@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // mobile projects section
   const addAnimationToElements = (elements) => {
       elements.forEach((element) => {
-        element.classList.add('grow');
+        element.classList.add('grow'); // grow class toevoegen voor de animation, zelfde principe bij de rest
       });
     };
   
