@@ -1,5 +1,7 @@
 # Studio Pyår - Creative Studio
-### Website redesign voor Studio Pyår, met een oog voor creativiteit
+ ```javascript
+console.log("Website redesign voor Studio Pyår, met een oog voor creativiteit");
+```
 <img alt="Hero image of the studio pyar website" src="readme-images/Hero-image.png">
 
 
