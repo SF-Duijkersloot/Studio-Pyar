@@ -1,0 +1,100 @@
+/* CSS voor de image animations. */
+/* Veel gebruik gemaakt van !important :/ Op een volledige gecodeerde site zou ik dit niet doen, maar door wordpress en de vele classes die ze op de items doen, werd het soms moeilijk. Anders had ik al die classes in de css moeten zetten voor de juiste priority... */
+
+.parallax-image {
+    position: relative;
+    overflow: hidden;
+}
+.parallax-image img {
+  display: block;
+  transition: transform 0.3s ease-out;
+}
+
+.image-animation {
+  height: 0%;
+  transition: height 1s cubic-bezier(.65, 0, .35, 1);
+}
+.image-animation.grow {
+  height: 100%;
+}
+
+.project-animation .project-parent-container {
+	clip-path: inset(100% 0% round 0%); /* Wordpress werkte niet mee met de overflow, en dit werkte als oplossing */
+	}
+	.project-animation.grow .project-parent-container {
+	clip-path: inset(0% 0% round 0%);
+	}
+@media (min-width: 640px) {
+	.project-animation .fusion-column-inner-bg.hover-type-none,
+	.project-animation .fusion-column-has-bg-image {
+	height: 0% !important; /* Wordpress gooit van zichzelf echt duizenden classes op de items, dus heb soms !important moeten gebruiken om de priority te geven. Is niet heel netjes, maar anders werkte het niet goed. */
+	transition: height 1s cubic-bezier(.65, 0, .35, 1);
+	}
+	.project-animation.grow .fusion-column-inner-bg.hover-type-none,
+	.project-animation.grow .fusion-column-has-bg-image {
+	height: 100% !important;
+	}
+}
+
+@media (max-width: 640px) {
+	.cat-page .project-animation .fusion-column-inner-bg.hover-type-none,
+	.cat-page .project-animation .fusion-column-has-bg-image {
+	width: 0% !important;
+	transition: width 1s cubic-bezier(.65, 0, .35, 1);
+	}
+	
+	.cat-page .project-animation.grow .fusion-column-inner-bg.hover-type-none,
+	.cat-page .project-animation.grow .fusion-column-has-bg-image {
+	width: 96% !important;
+	}
+	
+    /* Home page */
+	.home-page .project-animation .fusion-column-inner-bg.hover-type-none,
+	.home-page .project-animation .fusion-column-has-bg-image {
+	height: 0% !important;
+	transition: height 1s cubic-bezier(.65, 0, .35, 1);
+	}
+	.home-page .project-animation.grow .fusion-column-inner-bg.hover-type-none,
+	.home-page .project-animation.grow .fusion-column-has-bg-image {
+	height: 100% !important;
+	}
+}
+
+.separator-animation {
+  width: 0% !important;
+  transition: width 1.3s cubic-bezier(.65, 0, .35, 1);
+}
+.separator-animation.grow {
+  width: 100% !important;
+}
+
+.custom-separator {
+  height: 0% !important;
+  transition: height 1.3s cubic-bezier(.65, 0, .35, 1);
+}
+.custom-separator.grow {
+  height: 85% !important;
+}
+
+@media (max-width: 640px) {
+    .home-page .projects-animation {
+    height: 0 !important;
+    }
+	.home-page .projects-animation.grow {
+    height: 130vw !important;
+    }
+	.cat-page .projects-animation {
+    width: 0 !important;
+    transition: width 1s cubic-bezier(.65, 0, .35, 1);
+    }
+	.cat-page .projects-animation.grow {
+    width: 96% !important;
+    }
+	.expertises-image-column {
+    height: 0 !important;
+    transition: height 1s cubic-bezier(.65, 0, .35, 1);
+    }
+	.expertises-image-column.grow {
+    height: 30vh !important;
+    }
+}
