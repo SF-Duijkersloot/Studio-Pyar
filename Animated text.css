@@ -1,0 +1,98 @@
+/* CSS voor de text animations. Dit zijn: letter by letter pop-ups, woord pop-ups en fade-ins */
+/* Veel gebruik gemaakt van !important :/ Op een volledige gecodeerde site zou ik dit niet doen, maar door wordpress en de vele classes die ze op de items doen, werd het soms moeilijk. Anders had ik al die classes in de css moeten zetten voor de juiste priority... */
+
+:root {
+	--animation-time: 1s;
+}
+.word-outer-span {
+	overflow: hidden !important;
+}
+.header-animated-fonts .word-outer-span {
+	overflow: visible !important;
+}
+.animated-text {
+    overflow: hidden;
+    line-height: .875 !important;
+  }
+  .animated-text span {
+    transform: translateY(100%);
+    display: inline-block;
+    overflow: visible;
+  }
+  .word-pop-up {
+    overflow: hidden;
+  }
+.word-pop-up.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.animated-text.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.word-pop-up .story-border span {
+  transform: translateY(130%);
+}
+  .word-pop-up span {
+    transform: translateY(100%);
+    display: inline-block;
+    overflow: visible;
+  }
+.word-pop-up .story-border span{
+  padding: calc(0.05 * var(--awb-font-size)) calc(0.4 * var(--awb-font-size)); /* --awb-font-size is de font size wat wordpress standaard zet op de tekst*/
+  border-radius: 5000px;
+  border: 0.05em solid #212121;
+}
+div:is(:has(> .pop-up)) {
+  overflow: hidden !important;
+}
+.pop-up {
+	transform: translateY(105%);
+}
+.expertise-text.pop-up {
+  transform: translateY(110%);
+}
+.partners-undertext.pop-up {
+  transform: translateY(120%);
+}
+.fade-in {
+    opacity: 0;
+}
+
+  .header-animated-fonts span {
+    -webkit-text-stroke: 2vw transparent; /* deze tekst-stroke moeten gebruiken omdat de kerning tussen de letters niet goed werkte met de animation. */
+      user-select: none;
+  }
+
+@media (max-width: 640px) {
+	.expertise-text.pop-up {
+    transform: translateY(140%);
+}
+}
+    @keyframes pop-up {
+      to {
+        transform: translateY(0);
+      }
+    }
+    @keyframes fade-in {
+      to {
+        opacity: 1;
+      }
+    }
+
+/* Lijst aan animations en timings */
+.word-pop-up.animation span {
+    animation: pop-up var(--animation-time) cubic-bezier(0.62,0.05,0.01,0.95) forwards;
+}
+.animated-text.letter-pop-up span {
+    animation: pop-up var(--animation-time) cubic-bezier(0.62,0.05,0.01,0.95) forwards;
+    animation-delay: 0.46s;
+}
+.pop-up.animation {
+    animation: pop-up var(--animation-time) cubic-bezier(0.62, 0.05, 0.01, 0.95) forwards;
+    animation-delay: 0.2s;
+}
+.fade-in.animation {
+    animation: fade-in var(--animation-time) cubic-bezier(0.62, 0.05, 0.01, 0.95) forwards;
+    animation-delay: 0.2s;
+}
