@@ -1,6 +1,6 @@
 # Studio Pyår - Creative Studio
  ```javascript
-console.log("Website redesign voor Studio Pyår, met een oog voor creativiteit");
+console.log("Website redesign * development voor Studio Pyår, met een oog voor creativiteit");
 ```
 Live link naar site: [Studio Pyår](https://studiopyar.com/)
 <hr>
