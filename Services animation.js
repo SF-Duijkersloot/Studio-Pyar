@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // next step links verzamelen
 const nextStepLinks = document.querySelectorAll(".scroll-next");
 
-// Function to calculate the scaling and translation based on scroll position
+// check of de animation "uit de frame" is
 function updateScrollAnimation() {
   const currentScroll = window.scrollY;
   if (currentScroll < startScroll) {
@@ -71,21 +71,20 @@ function updateScrollAnimation() {
 
   if (isDesktop) {
   if (currentScroll >= startScroll && currentScroll <= endScroll) {
-    const progress = (currentScroll - startScroll) / (endScroll - startScroll); // Calculate progress from 0 to 1
-    // Calculate scaling factor from .9 to 0.8
+    const progress = (currentScroll - startScroll) / (endScroll - startScroll); // progress meten van 0 tot 1
+    // scale factor
     const scale = .9 - 0.15 * progress;
-    // Calculate horizontal translation from 0 to 100%
+    // horizontal translation voor de animation
     const translateX = 70 * progress;
-    // Apply scaling and translation to .services-container
+    // translation toepassen
     container.style.transform = `scale(${scale}) translate3d(${translateX}%, 0, 0)`;
     
   }
 }};
 
-// Common function to scroll into view with an offset
 const scrollIntoViewWithOffset = (selector, offsetVh) => {
   const offsetPixels = (offsetVh * window.innerHeight) / 100;
-
+// see next link handlers met een bepaalde offset, zodat het in het midden komt
   window.scrollTo({
     behavior: 'smooth',
     top:
@@ -95,10 +94,9 @@ const scrollIntoViewWithOffset = (selector, offsetVh) => {
   });
 };
 
-// Listen to the scroll event and update the animation accordingly
 window.addEventListener("scroll", updateScrollAnimation);
 
-// Determine screen size
+// checken of het desktop of mobile is, want er zijn verschillende animations voor deze viewports
 const isDesktop = window.matchMedia("(min-width: 640px)").matches;
 
 nextStepLinks.forEach((link) => {
@@ -107,10 +105,8 @@ nextStepLinks.forEach((link) => {
     const targetId = link.getAttribute('href');
     
     if (isDesktop) {
-      // Call the scrollIntoViewWithOffset function with the target ID and offset in vh
       scrollIntoViewWithOffset(targetId, 30); // Adjust the offset in vh as needed
     } else {
-      // Scroll to the bottom of the target element
       scrollIntoViewWithOffset(targetId, 60)
     }
   });
@@ -118,7 +114,7 @@ nextStepLinks.forEach((link) => {
 
 
 
-////////// Service animation //////////
+////////// Service animation (de cirkel) //////////
 var textOffset = 0.1 * window.innerWidth;
 var textHeightOffset = .0001;
   if (!isDesktop) {
@@ -131,7 +127,7 @@ var textHeightOffset = .0001;
     return textOffset - (textHeightOffset * window.innerWidth) * Math.abs(centerY - y);
   }
 
-  // Calculate positions for small circles and texts
+  // posities voor de small circles en tekst
   for (let i = 0; i < smallCircles.length; i++) {
     const angle = i * angleIncrement;
     const x = centerX + radius * Math.cos(angle);
@@ -140,7 +136,7 @@ var textHeightOffset = .0001;
     smallCircles[i].style.left = x + "px";
     smallCircles[i].style.top = y + "px";
 
-    // Slightly increase the radius for the text to make it float alongside the small circle
+    // kleine vergroting van de straal van de tekst, zodat deze langs de kleine cirkel zweeft.
     const textRadius = radius + calculateDynamicTextOffset(y);
     const textX = centerX + textRadius * Math.cos(angle);
     const textY = centerY - textRadius * Math.sin(angle);
@@ -149,7 +145,7 @@ var textHeightOffset = .0001;
     texts[i].style.top = textY + "px";
   }
 
-  // Animate the small circles and texts
+  // animate de small circles and teksten
   const animationDuration = 20000; 
   const startTime = performance.now();
 
@@ -157,34 +153,9 @@ var textHeightOffset = .0001;
     const currentTime = performance.now();
     let elapsedTime = currentTime - startTime;
 
-    // Calculate the angle rotation based on the desired duration for one full rotation
-    const angleRotation = (elapsedTime / animationDuration) * (2 * Math.PI);
-
-    // Use modulo to reset elapsedTime after one full rotation
-    if (elapsedTime >= animationDuration) {
-      elapsedTime %= animationDuration;
-    }
-
-    for (let i = 0; i < smallCircles.length; i++) {
-      const angle = i * angleIncrement + angleRotation;
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY - radius * Math.sin(angle);
-
-      smallCircles[i].style.left = x + "px";
-      smallCircles[i].style.top = y + "px";
-
-      // Update the text position with the slightly increased radius
-      const textRadius = radius + calculateDynamicTextOffset(y);
-      const textX = centerX + textRadius * Math.cos(angle);
-      const textY = centerY - textRadius * Math.sin(angle);
-
-      texts[i].style.left = textX + "px";
-      texts[i].style.top = textY + "px";
-    }
-
-    // Request the next animation frame
+    // animation frame requesten
     requestAnimationFrame(animate);
   }
 
-  animate(); // Start the animation
+  animate(); // animation starten
 });
