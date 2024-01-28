@@ -2,6 +2,8 @@
  ```javascript
 console.log("Website redesign voor Studio Pyår, met een oog voor creativiteit");
 ```
+Live link naar site: [Studio Pyår](https://studiopyar.com/)
+<hr>
 <img alt="Hero image of the studio pyar website" src="readme-images/Hero-image.png">
 
 
